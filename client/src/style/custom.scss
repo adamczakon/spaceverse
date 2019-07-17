@@ -1,0 +1,104 @@
+//colors
+$body-bg: #fff;
+$primary: #22242a;
+$secondary: #ffdf1d;
+$warning: #f0ad4e;
+$success: #78cd51;
+$info: #ac92ec;
+$danger: #ff6c60;
+
+.content {
+  margin-top: 120px;
+  padding: 0 5%;
+  transition: margin 0.3s ease-in;
+}
+.content-right {
+  margin-left: 210px;
+  transition: margin 0.3s ease-in;
+}
+
+.toggler-custom {
+  margin-right: 1rem;
+}
+
+@media (max-width: 700px) {
+  .content {
+    padding: 0 2%;
+  }
+
+  .content-right {
+    margin-left: 0;
+  }
+
+  .hide-sm {
+    display: none;
+  }
+
+  .action-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .toggler-custom {
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 1000px) {
+  .content-right {
+    margin-left: 0;
+  }
+
+  .action-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+// animations
+@-webkit-keyframes row-animation {
+  from {
+    top: 0;
+  }
+  to {
+    top: 1;
+  }
+}
+
+@keyframes row-animation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes width-animation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.row-animation {
+  animation: row-animation 0.5s alternate;
+  -webkit-animation: row-animation 0.5s alternate both;
+}
+
+// table content alignment
+.table > tbody > tr > td {
+  vertical-align: middle;
+}
+
+// datepicker display
+.react-datepicker-wrapper,
+.react-datepicker__input-container {
+  display: block;
+}
+
+@import "landing.scss";
+@import "sideNav.scss";
+@import "~bootstrap/scss/bootstrap.scss";
