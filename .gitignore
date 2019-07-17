@@ -1,4 +1,4 @@
 node_modules
 /backend config
 /todo
-config/default.json
+config/keys.js
