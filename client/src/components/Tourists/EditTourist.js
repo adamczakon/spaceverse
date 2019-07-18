@@ -21,24 +21,15 @@ class EditTourist extends Component {
     this.props.getTouristDetails(this.props.match.params.id);
   }
 
-  componentDidUpdate(prevProps) {
-    if (
-      this.props.tourists.touristDetails.flightId !==
-      prevProps.tourists.touristDetails.flightId
-    ) {
-      this.props.getFlightDetails(this.props.tourists.touristDetails.flightId);
-    }
-  }
-
   // Add flight to tourist
   addFlight = id => {
     const updateTourist = {
-      touristId: this.props.tourists.touristDetails._id,
+      touristId: this.props.tourists.touristDetails.id,
       flightId: this.props.tourists.touristDetails.flightId
     };
 
     const updateFlight = {
-      touristId: this.props.tourists.touristDetails._id,
+      touristId: this.props.tourists.touristDetails.id,
       flightId: id
     };
 
@@ -55,16 +46,16 @@ class EditTourist extends Component {
   //remove flight from tourist
   removeTouristFromFlight = id => {
     const updateTourist = {
-      touristId: this.props.tourists.touristDetails._id,
-      flightId: id
+      touristId: this.props.tourists.touristDetails.id,
+      flightId: ""
     };
 
     const updateFlight = {
-      touristId: this.props.tourists.touristDetails._id,
+      touristId: this.props.tourists.touristDetails.id,
       flightId: id
     };
 
-    this.props.touristRemoveFlight(updateTourist);
+    this.props.touristAddFlight(updateTourist);
     this.props.flightRemoveTourist(updateFlight);
   };
 

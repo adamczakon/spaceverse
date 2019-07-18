@@ -30,7 +30,7 @@ class EditFlight extends Component {
   };
 
   //Remove tourist from flight
-  removeTouristFromFlight = id => {
+  removeTouristFromFlight = (id, _id) => {
     const updateFlight = {
       touristId: id,
       flightId: this.props.results.flightDetails._id
@@ -155,6 +155,7 @@ class EditFlight extends Component {
                           className='btn btn-danger btn-sm'
                           onClick={this.removeTouristFromFlight.bind(
                             this,
+                            tourist.id,
                             tourist._id
                           )}
                         >
@@ -216,7 +217,7 @@ class EditFlight extends Component {
                               className='btn btn-success btn-sm'
                               onClick={this.addTouristToFlight.bind(
                                 this,
-                                tourist._id
+                                tourist.id
                               )}
                             >
                               <i className='fas fa-plus' />

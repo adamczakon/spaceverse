@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-//Item model
+//Flight model
 const Flight = require("../../models/Flight");
 
 //@route GET api/items
@@ -31,7 +31,7 @@ router.post("/", (req, res) => {
 });
 
 //@route DELETE api/flight/:id
-//@description: Delete an item
+//@description: Delete a flight
 router.delete("/:id", (req, res) => {
   Flight.findById(req.params.id)
     .then(flight => flight.remove().then(() => res.json({ succes: true })))

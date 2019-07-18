@@ -31,7 +31,6 @@ export const getTouristsInFlight = id => dispatch => {
 };
 
 export const getTouristDetails = id => dispatch => {
-  console.log(id);
   axios.get(`/api/tourists/tourist-edit/${id}`).then(res =>
     dispatch({
       type: GET_TOURIST_DETAILS,

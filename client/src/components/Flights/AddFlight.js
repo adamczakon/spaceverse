@@ -5,10 +5,8 @@ import { addFlight } from "../../actions/flightActions";
 import { setAlert } from "../../actions/alert";
 import Alert from "../Layout/Alert";
 import PropTypes from "prop-types";
-import DatePicker, { registerLocale } from "react-datepicker";
+import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import ptBR from "date-fns/locale/pt-BR";
-registerLocale("pt-BR", ptBR);
 
 class AddFlight extends Component {
   state = {
@@ -81,7 +79,6 @@ class AddFlight extends Component {
                   dateFormat='dd/MM/yy h:mm aa'
                   timeCaption='time'
                   placeholderText='Departure date'
-                  locale='pt-BR'
                 />
               </div>
 

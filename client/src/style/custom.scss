@@ -21,6 +21,7 @@ $danger: #ff6c60;
   margin-right: 1rem;
 }
 
+//Responsive design
 @media (max-width: 700px) {
   .content {
     padding: 0 2%;
@@ -55,26 +56,8 @@ $danger: #ff6c60;
   }
 }
 
-// animations
-@-webkit-keyframes row-animation {
-  from {
-    top: 0;
-  }
-  to {
-    top: 1;
-  }
-}
-
+// Animations
 @keyframes row-animation {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes width-animation {
   from {
     opacity: 0;
   }

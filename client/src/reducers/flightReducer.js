@@ -51,22 +51,31 @@ export default function(state = initialState, action) {
               }
             : flight
         ),
-        flightDetails: {
-          ...state.flightDetails,
-          tourists: [...state.flightDetails.tourists, action.payload.touristId]
-        }
+        flightDetails:
+          Object.keys(state.flightDetails).length > 0
+            ? {
+                ...state.flightDetails,
+                tourists: [
+                  ...state.flightDetails.tourists,
+                  action.payload.touristId
+                ]
+              }
+            : state.flightDetails
       };
     case FLIGHT_REMOVE_TOURIST:
       return {
         ...state,
-        flightDetails: {
-          ...state.flightDetails,
-          tourists: [
-            ...state.flightDetails.tourists.filter(
-              tourist => tourist !== action.payload.touristId
-            )
-          ]
-        },
+        flightDetails:
+          Object.keys(state.flightDetails).length > 0
+            ? {
+                ...state.flightDetails,
+                tourists: [
+                  ...state.flightDetails.tourists.filter(
+                    tourist => tourist !== action.payload.touristId
+                  )
+                ]
+              }
+            : state.flightDetails,
         flights: state.flights.map(flight =>
           flight._id === action.payload.flightId
             ? {

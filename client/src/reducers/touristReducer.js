@@ -55,23 +55,23 @@ export default function(state = initialState, action) {
           flightId: action.payload.flightId
         },
         tourists: state.tourists.map(tourist => {
-          if (tourist._id === action.payload.touristId) {
-            return (tourist.flightId = action.payload.flightId);
+          if (tourist.id === action.payload.touristId) {
+            tourist.flightId = action.payload.flightId;
           }
-        }),
-        tourists: [...state.tourists]
+          return tourist;
+        })
       };
     case TOURIST_REMOVE_FLIGHT:
       return {
         ...state,
-        touristDetails: (state.touristDetails.flightId = ""),
-        touristDetails: state.touristDetails,
+        touristDetails: (state.touristDetails,
+        (state.touristDetails.flightId = "")),
         tourists: state.tourists.map(tourist => {
-          if (tourist._id === action.payload.touristId) {
+          if (tourist.id === action.payload.touristId) {
             tourist.flightId = "";
           }
-        }),
-        tourists: [...state.tourists]
+          return tourist;
+        })
       };
 
     default:

@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { getTourists, deleteTourist } from "../../actions/touristActions";
+import {
+  getTourists,
+  deleteTourist,
+  getTouristDetails
+} from "../../actions/touristActions";
+import { flightRemoveTourist } from "../../actions/flightActions";
 import Spinner from "../Layout/Spinner";
 
 class Tourists extends Component {
@@ -13,14 +18,22 @@ class Tourists extends Component {
     this.props.getTourists();
   }
 
-  deleteTourist = _id => {
+  deleteTourist = (_id, id, flightId) => {
+    console.log(_id, flightId);
     this.props.deleteTourist(_id);
+
+    if (flightId.length > 0) {
+      const updateFlight = {
+        touristId: id,
+        flightId: flightId
+      };
+      this.props.flightRemoveTourist(updateFlight);
+    }
   };
 
   toggleFlights = id => {
     this.setState({ flightsOpen: !this.state.flightsOpen });
     this.setState({ flightId: id });
-    console.log(document.getElementsByClassName(id).classList);
   };
 
   setFlightId = id => {
@@ -90,7 +103,12 @@ class Tourists extends Component {
                         <button
                           type='button'
                           className='btn btn-danger btn-sm'
-                          onClick={this.deleteTourist.bind(this, tourist._id)}
+                          onClick={this.deleteTourist.bind(
+                            this,
+                            tourist._id,
+                            tourist.id,
+                            tourist.flightId
+                          )}
                         >
                           <i className='fas fa-times' />
                         </button>
@@ -113,5 +131,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getTourists, deleteTourist }
+  { getTourists, deleteTourist, getTouristDetails, flightRemoveTourist }
 )(Tourists);

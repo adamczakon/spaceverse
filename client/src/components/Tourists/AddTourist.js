@@ -9,6 +9,7 @@ import DatePicker from "react-datepicker";
 
 class AddTourist extends Component {
   state = {
+    id: uuid(),
     firstName: "",
     lastName: "",
     gender: "",
@@ -59,11 +60,15 @@ class AddTourist extends Component {
 
     this.props.addTourist(newTourist);
 
-    const updateFlight = {
-      flightId: this.state.flightId
-    };
+    if (this.state.flightId.length > 0) {
+      const updateFlight = {
+        touristId: newTourist.id,
+        flightId: this.state.flightId
+      };
+      this.props.flightAddTourist(updateFlight);
+    }
 
-    this.props.flightAddTourist(updateFlight);
+    this.setState({ flightId: "", flightActive: "" });
   };
 
   dateDisplay = str => {
@@ -211,6 +216,8 @@ class AddTourist extends Component {
                   className='form-control'
                   name='country'
                   placeholder='Country'
+                  onChange={this.onChange}
+                  required
                 >
                   <option defaultValue />
                   <option value='AFG'>Afghanistan</option>

@@ -7,6 +7,7 @@ const config = require("config");
 const jwt = require("jsonwebtoken");
 
 const User = require("../../models/User");
+
 // @route   GET api/auth
 // @desc    Test route
 // @access  Public
@@ -25,7 +26,10 @@ router.get("/", auth, async (req, res) => {
 // @access  Public
 router.post(
   "/",
-  [check("email", "Please include a valid email").isEmail(), check("password", "Password is required").exists()],
+  [
+    check("email", "Please include a valid email").isEmail(),
+    check("password", "Password is required").exists()
+  ],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -54,10 +58,15 @@ router.post(
         }
       };
 
-      jwt.sign(payload, config.get("jwtSecret"), { expiresIn: 360000 }, (err, token) => {
-        if (err) throw err;
-        res.json({ token });
-      });
+      jwt.sign(
+        payload,
+        config.get("jwtSecret"),
+        { expiresIn: 360000 },
+        (err, token) => {
+          if (err) throw err;
+          res.json({ token });
+        }
+      );
     } catch (err) {
       console.log(err.message);
       res.status(500).send("Server error");
