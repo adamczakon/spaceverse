@@ -1,4 +1,4 @@
-# IT Cloud
+# Spaceverse
 
 Fullstack application for managing space flights.
 
